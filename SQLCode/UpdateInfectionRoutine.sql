@@ -17,13 +17,13 @@ EXEC msdb.dbo.sp_add_jobstep
     @job_name = N'Update Infection Routine',   
     @step_name = N'Run Procedure',   
     @subsystem = N'TSQL',   
-    @command = 'EXEC UpdateInfection';
+    @command = 'USE CovidData; EXEC UpdateInfection';
 
 EXEC msdb.dbo.sp_add_schedule  
     @schedule_name = N'Update Infection Schedule',   
     @freq_type = 4,  -- daily start
     @freq_interval = 1,
-    @active_start_time = '235959' ;   -- start time 23:59:59
+    @active_start_time = '235900' ;   -- start time 23:59:00
 
 EXEC msdb.dbo.sp_attach_schedule  
     @job_name = N'Update Infection Routine',  
